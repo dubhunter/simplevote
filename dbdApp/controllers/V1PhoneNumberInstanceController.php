@@ -14,7 +14,7 @@ class V1PhoneNumberInstanceController extends V1ApiController {
 		parent::init();
 
 		try {
-			$this->phoneNumber = PhoneNumber::getByDid($this->getParam('did'));
+			$this->phoneNumber = PhoneNumber::getByDid('+' . $this->getParam('did'));
 			SVException::ensure($this->phoneNumber->getId() > 0, SVException::NOT_FOUND);
 		} catch (SVException $e) {
 			$this->e($e);
