@@ -12,10 +12,10 @@ class PhoneNumber extends dbdModel {
 
 	/**
 	 * @param array $tableKeys
-	 * @param $limit
+	 * @param int|null a$limit
 	 * @return PhoneNumber[]
 	 */
-	public static function getAll($tableKeys = array(), $limit) {
+	public static function getAll($tableKeys = array(), $limit = null) {
 		return parent::getAll($tableKeys, '`' . self::TABLE_FIELD_DID . '`', $limit);
 	}
 
