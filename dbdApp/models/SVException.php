@@ -7,6 +7,10 @@ class SVException extends dbdHoldableException {
 	const NOT_FOUND = 404;
 	const METHOD_NOT_ALLOWED = 405;
 
+	const VOTE_TO = 1000;
+	const VOTE_FROM = 1001;
+	const VOTE_VOTE = 1002;
+
 	private static $msgs = array();
 
 	public function __construct($code = 0) {
