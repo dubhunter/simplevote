@@ -4,13 +4,17 @@ class V1VoteResultsController extends V1ApiController {
 
 	public function doGet() {
 		try {
-			for ($i = self::VALID_MIN; $i <= self::VALID_MAX; $i++) {
+			$did = '+' . $this->getParam('to');
+
+			$phoneNumber = PhoneNumber::getByDid($did);
+
+			for ($i = $phoneNumber->getValidMin(); $i <= $phoneNumber->getValidMax(); $i++) {
 				$this->data[$i] = 0;
 			}
 
 			/** @var Vote[] $votes */
 			$votes = Vote::getAll(array(
-				'to' => '+' . $this->getParam('to'),
+				'to' => $did,
 			));
 
 			foreach ($votes as $vote) {

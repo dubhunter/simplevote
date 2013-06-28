@@ -1,9 +1,6 @@
 <?php
 class SVController extends dbdController {
 
-	const VALID_MIN = 1;
-	const VALID_MAX = 4;
-
 	/**
 	 * Get current request host.
 	 * If optional flag is passed, parameters are included.

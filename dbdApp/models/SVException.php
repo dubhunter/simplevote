@@ -11,6 +11,8 @@ class SVException extends dbdHoldableException {
 	const VOTE_FROM = 1001;
 	const VOTE_VOTE = 1002;
 
+	const PHONE_NUMBER_DID = 1100;
+
 	private static $msgs = array();
 
 	public function __construct($code = 0) {

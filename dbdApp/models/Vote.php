@@ -5,30 +5,31 @@ class Vote extends dbdModel {
 	const TABLE_FIELD_TO = 'to';
 	const TABLE_FIELD_FROM = 'from';
 	const TABLE_FIELD_VOTE = 'vote';
+	const TABLE_FIELD_DATE = 'date';
 
 	/**
-	 * @param $to
+	 * @param string $to
 	 */
 	public function setTo($to) {
 		$this->to = $to;
 	}
 
 	/**
-	 * @param $from
+	 * @param string $from
 	 */
 	public function setFrom($from) {
 		$this->from = $from;
 	}
 
 	/**
-	 * @param $vote
+	 * @param int $vote
 	 */
 	public function setVote($vote) {
 		$this->vote = $vote;
 	}
 
 	/**
-	 * @param $date
+	 * @param string $date
 	 */
 	public function setDate($date) {
 		$this->date = $date;

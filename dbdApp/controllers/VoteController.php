@@ -1,10 +1,5 @@
 <?php
 class VoteController extends SVController {
-	const MAX_VOTES = 1;
-
-	protected function init() {
-		$this->setTemplate('twiml-empty.tpl');
-	}
 
 	public function doPost() {
 		dbdLog($this->getParams());
@@ -12,17 +7,35 @@ class VoteController extends SVController {
 		$from = $this->getParam('From');
 		$vote = $this->getParam('Body');
 
+		$phoneNumber = PhoneNumber::getByDid($to);
+
+		$voteMax = $phoneNumber->getVoteMax();
+		$validMin = $phoneNumber->getValidMin();
+		$validMax = $phoneNumber->getValidMax();
+
 		$count = Vote::getCount(array(
 			'to' => $to,
 			'from' => $from,
 		));
 
-		if (is_numeric($vote) && $vote >= self::VALID_MIN && $vote <= self::VALID_MAX && $count < self::MAX_VOTES) {
-			$V = new Vote();
-			$V->setTo($to);
-			$V->setFrom($from);
-			$V->setVote($vote);
-			$V->save();
+		$this->view->assign('voter', $from);
+
+		if (is_numeric($vote) && $vote >= $validMin && $vote <= $validMax) {
+			if ($count < $voteMax) {
+				$V = new Vote();
+				$V->setTo($to);
+				$V->setFrom($from);
+				$V->setVote($vote);
+				$V->save();
+				$this->setTemplate('twiml-thanks.tpl');
+			} else {
+				$this->view->assign('voteMax', $voteMax);
+				$this->setTemplate('twiml-max-votes.tpl');
+			}
+		} else {
+			$this->view->assign('validMin', $validMin);
+			$this->view->assign('validMax', $validMax);
+			$this->setTemplate('twiml-invalid.tpl');
 		}
 	}
 }
