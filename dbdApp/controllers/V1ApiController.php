@@ -160,13 +160,6 @@ class V1ApiController extends SVController {
 		$this->data('errors', $errors);
 	}
 
-	protected function setErrorHeader() {
-		if ($this->response_code >= 400 && $this->response_code < 500) {
-			header('HTTP/1.1 ' . $this->response_code . " " . SVException::g($this->response_code));
-			exit(0);
-		}
-	}
-
 	/**
 	 * @return string
 	 */

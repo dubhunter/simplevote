@@ -45,6 +45,7 @@ class VoteController extends SVController {
 			}
 		} catch (SVException $e) {
 			$this->e($e);
+			$this->setErrorHeader();
 		}
 	}
 }

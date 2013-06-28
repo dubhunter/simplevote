@@ -35,6 +35,16 @@ class SVController extends dbdController {
 	}
 
 	/**
+	 * Set an error header and exit
+	 */
+	protected function setErrorHeader() {
+		if ($this->response_code >= 400 && $this->response_code < 500) {
+			header('HTTP/1.1 ' . $this->response_code . " " . SVException::g($this->response_code));
+			exit(0);
+		}
+	}
+
+	/**
 	 * Validate the
 	 * @return bool
 	 */
