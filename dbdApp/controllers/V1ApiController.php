@@ -113,6 +113,7 @@ class V1ApiController extends SVController {
 		if ($this->getParam('callback')) {
 			$out .= $this->getParam('callback') . '(';
 		}
+		dbdLog($this->data);
 		$out .= @json_encode($this->data, JSON_FORCE_OBJECT | JSON_BIGINT_AS_STRING);
 		if ($this->getParam('callback')) {
 			$out .= ')';
