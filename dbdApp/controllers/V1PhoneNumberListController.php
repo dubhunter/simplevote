@@ -5,7 +5,7 @@ class V1PhoneNumberListController extends V1ApiController {
 	public function doGet() {
 		try {
 			$limit = $this->genLimit();
-			$phoneNumbers = PhoneNumber::getAll($limit);
+			$phoneNumbers = PhoneNumber::getAll(array(), $limit);
 
 			$data = array();
 			foreach ($phoneNumbers as $phoneNumber) {
