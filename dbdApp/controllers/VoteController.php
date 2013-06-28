@@ -2,8 +2,9 @@
 class VoteController extends SVController {
 
 	public function doPost() {
-		dbdLog($this->getParams());
 		try {
+			SVException::ensure($this->validTwilioRequest(), SVException::UNAUTHORIZED);
+
 			$to = $this->getParam('To');
 			$from = $this->getParam('From');
 			$vote = $this->getParam('Body');
