@@ -12,6 +12,9 @@ define('DBD_MVC_DIR', '/var/www/dbdMVC2/');
 
 require_once(DBD_MVC_DIR."dbdMVC.php");
 
+dbdRequest::addRewrite('#^/v1/phone-numbers?$#i', '/v1PhoneNumberListController');
+dbdRequest::addRewrite('#^/v1/phone-numbers/([0-9]+)?$#i', '/v1PhoneNumberInstanceController?did=$1');
+
 dbdRequest::addRewrite('#^/v1/votes/([0-9]+)?$#i', '/v1VoteResultsController?to=$1');
 
 dbdMVC::setErrorController('SVError');

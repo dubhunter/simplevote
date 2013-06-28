@@ -11,6 +11,14 @@ class PhoneNumber extends dbdModel {
 	const OPTION_VALID_MAX = 'valid-max';
 
 	/**
+	 * @param array $limit
+	 * @return PhoneNumber[]
+	 */
+	public static function getAll($limit) {
+		return parent::getAll(array(), 'did:asc', $limit);
+	}
+
+	/**
 	 * @param $did
 	 * @return PhoneNumber|null
 	 */
