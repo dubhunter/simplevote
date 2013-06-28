@@ -1,6 +1,5 @@
 <?php
 class VoteController extends SVController {
-
 	const MAX_VOTES = 1;
 
 	protected function init() {
@@ -18,7 +17,7 @@ class VoteController extends SVController {
 			'from' => $from,
 		));
 
-		if (is_numeric($vote) && $count < self::MAX_VOTES) {
+		if (is_numeric($vote) && $vote >= self::VALID_MIN && $vote <= self::VALID_MAX && $count < self::MAX_VOTES) {
 			$V = new Vote();
 			$V->setTo($to);
 			$V->setFrom($from);
