@@ -28,9 +28,6 @@ class V1PhoneNumberInstanceController extends V1ApiController {
 
 	public function doPost() {
 		try {
-			if ($this->getParam('did') !== null) {
-				$this->phoneNumber->setDid($this->getParam('did'));
-			}
 			if ($this->getParam('vote_max') !== null) {
 				$this->phoneNumber->setVoteMax($this->getParam('vote_max'));
 			}
