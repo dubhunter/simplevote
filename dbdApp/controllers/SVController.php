@@ -15,6 +15,12 @@ class SVController extends dbdController {
 		}
 	}
 
+	protected function init() {
+		$this->view->config_load('errorMsgs.conf');
+		SVException::setMsgArray($this->view->get_config_vars());
+		$this->view->clear_config();
+	}
+
 	/**
 	 * Get current request host.
 	 * If optional flag is passed, parameters are included.
