@@ -17,6 +17,8 @@ class V1VoteResultsController extends V1ApiController {
 				$data[$vote->getVote()]++;
 			}
 
+			dbdLog($data);
+
 			$this->data($data);
 		} catch (SVException $e) {
 			$this->e($e);
