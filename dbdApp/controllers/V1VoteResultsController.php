@@ -9,16 +9,13 @@ class V1VoteResultsController extends V1ApiController {
 				'to' => '+' . $this->getParam('to'),
 			));
 
-			$data = array();
 			foreach ($votes as $vote) {
-				$key = (string)$vote->getVote();
-				if (!isset($data[$key])) {
-					$data[$key] = 0;
+				$key = $vote->getVote();
+				if (!isset($this->data[$key])) {
+					$this->data[$key] = 0;
 				}
-				$data[$key]++;
+				$this->data[$key]++;
 			}
-
-			$this->data($data);
 		} catch (SVException $e) {
 			$this->e($e);
 		}

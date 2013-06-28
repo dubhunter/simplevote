@@ -32,6 +32,11 @@ class V1ApiController extends SVController {
 		parent::autoExec();
 	}
 
+	/**
+	 * @param $url
+	 * @param $params
+	 * @return string
+	 */
 	protected function buildUrl($url, $params) {
 		return http_build_url($url, array('query' => http_build_query($params)));
 	}
@@ -44,10 +49,11 @@ class V1ApiController extends SVController {
 		$argv = func_get_args();
 		switch ($argc) {
 			case 1:
-				if (is_array($argv[0]))
+				if (is_array($argv[0])) {
 					$this->data = array_merge($this->data, $argv[0]);
-				else
+				} else {
 					return $this->data[$argv[0]];
+				}
 				break;
 			case 2:
 				$this->data[$argv[0]] = $argv[1];
@@ -114,7 +120,7 @@ class V1ApiController extends SVController {
 			$out .= $this->getParam('callback') . '(';
 		}
 		dbdLog($this->data);
-		$out .= @json_encode($this->data, JSON_FORCE_OBJECT | JSON_BIGINT_AS_STRING);
+		$out .= @json_encode($this->data, JSON_FORCE_OBJECT);
 		if ($this->getParam('callback')) {
 			$out .= ')';
 		}
