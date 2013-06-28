@@ -11,10 +11,11 @@ class V1VoteResultsController extends V1ApiController {
 
 			$data = array();
 			foreach ($votes as $vote) {
-				if (!isset($data[$vote->getVote()])) {
-					$data[$vote->getVote()] = 0;
+				$key = (string)$vote->getVote();
+				if (!isset($data[$key])) {
+					$data[$key] = 0;
 				}
-				$data[$vote->getVote()]++;
+				$data[$key]++;
 			}
 
 			dbdLog($data);
