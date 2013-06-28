@@ -11,7 +11,7 @@ class V1VoteResultsController extends V1ApiController {
 
 			$data = array();
 			foreach ($votes as $vote) {
-				$key = (string)$vote->getVote();
+				$key = 'team-' . $vote->getVote();
 				if (!isset($data[$key])) {
 					$data[$key] = 0;
 				}
