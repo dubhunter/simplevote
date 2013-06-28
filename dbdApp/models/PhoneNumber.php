@@ -15,7 +15,7 @@ class PhoneNumber extends dbdModel {
 	 * @return PhoneNumber[]
 	 */
 	public static function getAll($limit) {
-		return parent::getAll(array(), 'did:asc', $limit);
+		return parent::getAll(array(), '`' . self::TABLE_FIELD_DID . '`:asc', $limit);
 	}
 
 	/**
