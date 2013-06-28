@@ -113,7 +113,7 @@ class V1ApiController extends SVController {
 		if ($this->getParam('callback')) {
 			$out .= $this->getParam('callback') . '(';
 		}
-		$out .= @json_encode($this->data);
+		$out .= @json_encode($this->data, JSON_FORCE_OBJECT);
 		if ($this->getParam('callback')) {
 			$out .= ')';
 		}

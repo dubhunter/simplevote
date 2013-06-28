@@ -11,14 +11,12 @@ class V1VoteResultsController extends V1ApiController {
 
 			$data = array();
 			foreach ($votes as $vote) {
-				$key = 'team-' . $vote->getVote();
+				$key = $vote->getVote();
 				if (!isset($data[$key])) {
 					$data[$key] = 0;
 				}
 				$data[$key]++;
 			}
-
-			dbdLog($data);
 
 			$this->data($data);
 		} catch (SVException $e) {
