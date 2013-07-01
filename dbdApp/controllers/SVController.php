@@ -60,7 +60,7 @@ class SVController extends dbdController {
 		} catch (SVException $e) {
 			return false;
 		}
-		$str = $this->getURL(true);
+		$str = $this->getUrl(true);
 		if (strlen(dbdMVC::getRequest()->getServer('QUERY_STRING'))) {
 			$str .= '?' . dbdMVC::getRequest()->getServer('QUERY_STRING');
 		}
