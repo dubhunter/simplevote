@@ -7,7 +7,7 @@ class VoteController extends SVController {
 
 			$to = $this->getParam('To');
 			$from = $this->getParam('From');
-			$vote = $this->getParam('Body');
+			$vote = trim($this->getParam('Body'));
 
 			$phoneNumber = PhoneNumber::getByDid($to);
 
