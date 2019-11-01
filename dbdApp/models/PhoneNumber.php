@@ -9,6 +9,7 @@ class PhoneNumber extends dbdModel {
 	const OPTION_VOTE_MAX = 'vote-max';
 	const OPTION_VALID_MIN = 'valid-min';
 	const OPTION_VALID_MAX = 'valid-max';
+	const OPTION_PROXY = 'proxy';
 
 	/**
 	 * @param array $tableKeys
@@ -180,6 +181,27 @@ class PhoneNumber extends dbdModel {
 	}
 
 	/**
+	 * @param int $proxy
+	 */
+	public function setProxy($proxy) {
+		$this->set(self::OPTION_PROXY, $proxy);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasProxy() {
+		return $this->has(self::OPTION_PROXY);
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getProxy() {
+		return $this->get(self::OPTION_PROXY);
+	}
+
+	/**
 	 * @return array
 	 */
 	public function getData() {
@@ -188,6 +210,7 @@ class PhoneNumber extends dbdModel {
 		$data['vote_max'] = $this->getVoteMax();
 		$data['valid_min'] = $this->getValidMin();
 		$data['valid_max'] = $this->getValidMax();
+		$data['proxy'] = $this->getProxy();
 		$data['date_created'] = $this->getDateCreated();
 		$data['date_updated'] = $this->getDateUpdated();
 		return $data;

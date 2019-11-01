@@ -15,12 +15,19 @@ class VoteController extends SVController {
 				throw new SVException(SVException::BAD_REQUEST);
 			}
 
+			if ($phoneNumber->hasProxy()) {
+				$phoneNumber = PhoneNumber::getByDid($phoneNumber->getProxy());
+				if (!$phoneNumber) {
+					throw new SVException(SVException::BAD_REQUEST);
+				}
+			}
+
 			$voteMax = $phoneNumber->getVoteMax();
 			$validMin = $phoneNumber->getValidMin();
 			$validMax = $phoneNumber->getValidMax();
 
 			$count = Vote::getCount(array(
-				'to' => $to,
+				'to' => $phoneNumber->getDid(),
 				'from' => $from,
 			));
 
@@ -29,7 +36,7 @@ class VoteController extends SVController {
 			if (is_numeric($vote) && $vote >= $validMin && $vote <= $validMax) {
 				if ($count < $voteMax) {
 					$V = new Vote();
-					$V->setTo($to);
+					$V->setTo($phoneNumber->getDid());
 					$V->setFrom($from);
 					$V->setVote($vote);
 					$V->save();
